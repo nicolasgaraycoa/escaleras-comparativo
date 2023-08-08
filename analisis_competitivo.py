@@ -10,7 +10,7 @@ st.set_page_config(page_title="Analisis competitivo", layout="wide")
 
 st.title('Analisis competitivo')
 
-precios = pd.read_excel('precios.xlsx')
+precios = pd.read_excel('C:/Users/nicol/Documents/Oliver/Oliver/analisis_competitivo/precios.xlsx')
 
 with st.sidebar:
     pais = st.multiselect('Pais: ', list(precios.pais.unique()))
@@ -22,13 +22,13 @@ with st.sidebar:
 precios = precios[precios['pais'].str.contains('|'.join(map(str, pais)))]
 precios = precios[precios['tipo'].str.contains('|'.join(map(str, tipo)))]
 bin_labels = ["A","B","C","D","E"][1:(tier-1)]
-precios['precio_bin'] = pd.qcut(precios['precio'], q=tier, 
+precios['ptier'] = pd.qcut(precios['precio'], q=tier, 
                                 labels=["A","B","C","D","E"][:tier])
 
 
-fig = px.violin(precios, x="precio", y="precio_bin", color="sku", box=True, points=False,
-          hover_data=precios.columns)
+fig = px.box(precios, y="precio", x="ptier", color="marca", hover_data=precios.columns)
 
+fig.update_xaxes(categoryorder='total ascending')
 
 
 st.plotly_chart(fig, theme="streamlit", use_container_width=True)
