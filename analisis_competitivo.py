@@ -10,7 +10,7 @@ st.set_page_config(page_title="Analisis competitivo", layout="wide")
 
 st.title('Analisis competitivo')
 
-precios = pd.read_excel('C:/Users/nicol/Documents/Oliver/Oliver/analisis_competitivo/precios.xlsx')
+precios = pd.read_excel('precios.xlsx')
 
 with st.sidebar:
     pais = st.multiselect('Pais: ', list(precios.pais.unique()))
