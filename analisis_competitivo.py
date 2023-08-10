@@ -46,6 +46,6 @@ fig = px.scatter(comp, x="ptier", y="pref_mean", color="sku", opacity=0.6,
                  title="Escaleras de precios x marca x sku")
 fig.update_traces(marker=dict(size=22))
 fig.add_hline(y=100, line_dash="dash", opacity=0.3)
-fig.update_xaxes(categoryorder='total ascending')
+fig.update_xaxes(categoryorder='array', categoryarray=["A","B","C","D","E"][:tier])
 
 st.plotly_chart(fig, theme="streamlit", use_container_width=True)
