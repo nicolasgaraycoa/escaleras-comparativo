@@ -15,14 +15,12 @@ precios = pd.read_excel('precios.xlsx')
 
 with st.sidebar:
     pais = st.multiselect('Pais: ', list(precios.pais.unique()))
-    tipo = st.multiselect('Tipo de alcohol: ', list(precios.tipo.unique()))
     sku_ref = st.selectbox("SKU referencial: ", 
                            list(precios['sku'].unique()))
     marca = st.multiselect('Marcas: ', list(precios.marca.unique()))
     
 
 precios = precios[precios['pais'].str.contains('|'.join(map(str, pais)))]
-precios = precios[precios['tipo'].str.contains('|'.join(map(str, tipo)))]
 
 comp = precios[['marca','sku', 'precio', 'ml']]
 comp['precio'] = (statistics.mode(comp['ml'])/comp['ml'])*comp['precio']
