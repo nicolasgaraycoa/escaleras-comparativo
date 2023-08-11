@@ -45,5 +45,6 @@ fig = px.scatter(comp, x="ptier", y="pref_mean", color="sku", opacity=0.6,
 fig.update_traces(marker=dict(size=22))
 fig.add_hline(y=100, line_dash="dash", opacity=0.3)
 fig.update_xaxes(categoryorder='array', categoryarray=["A","B","C","D","E"][:tier])
+fig.update_layout(yaxis_title="(%) de SKU referencial")
 
 st.plotly_chart(fig, theme="streamlit", use_container_width=True)
