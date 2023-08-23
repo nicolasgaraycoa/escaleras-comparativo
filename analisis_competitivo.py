@@ -37,7 +37,7 @@ comp = comp.fillna(value=1)
 
 comp = comp[comp['marca'].str.contains('|'.join(map(str, marca)))]
 tier = min(5, comp.shape[0])
-comp['ptier'] = pd.qcut(comp['pref_mean'], q=tier, 
+comp['ptier'] = pd.qcut(comp['pref_mean'].rank(method='first'), q=tier, 
                                 labels=["A","B","C","D","E"][:tier])
 
 fig = px.scatter(comp, x="ptier", y="pref_mean", color="sku", opacity=0.6,
