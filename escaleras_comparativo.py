@@ -40,7 +40,7 @@ tier = min(5, comp.shape[0])
 comp['ptier'] = pd.qcut(comp['pref_mean'].rank(method='first'), q=tier, 
                                 labels=["A","B","C","D","E"][:tier])
 
-fig = px.scatter(comp, x="ptier", y="pref_mean", color="sku", opacity=0.6, height=550,
+fig = px.scatter(comp, x="ptier", y="pref_mean", color="sku", opacity=0.6, height=590,
                  title="Escaleras de precios x marca x sku")
 fig.update_traces(marker=dict(size=23))
 fig.add_hline(y=100, line_dash="dash", opacity=0.3)
